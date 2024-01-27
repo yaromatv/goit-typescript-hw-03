@@ -1,15 +1,15 @@
 class Key {
     private readonly signature: number = Math.random();
 
-    public getSignature() {
-        console.log("Key signature: " + this.signature);
+    public getSignature(): number {
+        return this.signature;
     }
 }
 
 class Person {
     constructor(private key: Key) {}
 
-    public getKey() {
+    public getKey(): Key {
         return this.key;
     }
 }
@@ -30,7 +30,7 @@ abstract class House {
 }
 class MyHouse extends House {
     public openDoor(key: Key) {
-        if (key === this.key) {
+        if (key.getSignature() === this.key.getSignature()) {
             this.door = !this.door;
             console.log(`Key signature mathes. Doors are open: ${this.door}`);
         } else {
